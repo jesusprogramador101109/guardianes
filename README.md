@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +11,7 @@
     --gray:#f4f6f6;
     --dark:#333;
   }
-  body {
+  :body {
     margin:0;
     font-family: "Segoe UI", Arial, sans-serif;
     background: var(--gray);
@@ -61,7 +60,7 @@
     background:#aaa;
     cursor:not-allowed;
   }
-  .hud {
+  :ud {
     display: flex;
     justify-content: space-around;
     background: var(--green-light);
@@ -75,14 +74,14 @@
   }
 
   /* Minijuego 1 */
-  .bins {
+  :bins {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1rem;
     flex-wrap: wrap;
   }
-  .bin {
+  :bin {
     flex: 1;
     min-width: 90px;
     padding: 0.8rem;
@@ -102,7 +101,7 @@
   }
 
   /* Minijuego 2 */
-  .tap-area {
+  :tap-area {
     position: relative;
     width: 100%;
     height: 250px;
