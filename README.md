@@ -5,87 +5,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guardianes del Planeta</title>
 <style>
-  :root{
+  :root {
     --green:#2e7d32;
     --green-light:#66bb6a;
     --blue:#0277bd;
-    --gray:#f5f5f5;
+    --gray:#f4f6f6;
     --dark:#333;
   }
-  body{
+  body {
     margin:0;
-    font-family:system-ui,sans-serif;
-    background:var(--gray);
-    color:var(--dark);
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--gray);
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-  header{
-    background:var(--green);
-    color:#fff;
-    text-align:center;
-    padding:1rem;
+  header {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.4rem;
   }
-  main{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:0.5rem;
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
   }
-  .container{
-    width:100%;
-    max-width:960px;
-    background:#fff;
-    border-radius:12px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.1);
-    padding:12px;
-    text-align:center;
+  .container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
   }
-  button{
-    background:var(--blue);
-    color:#fff;
-    border:none;
-    padding:1rem 1.2rem;
-    border-radius:10px;
-    margin:0.5rem;
-    cursor:pointer;
-    font-size:1.1rem;
-    width:100%;
-    max-width:280px;
+  button {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin: 0.5rem auto;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 250px;
+    display: block;
   }
-  button:disabled{
+  button:disabled {
     background:#aaa;
     cursor:not-allowed;
   }
-  .hud{
-    display:flex;
-    justify-content:space-around;
-    background:var(--green-light);
-    padding:0.5rem;
-    margin-bottom:1rem;
-    border-radius:8px;
-    font-size:1rem;
-    font-weight:bold;
-    color:#fff;
-    flex-wrap:wrap;
-    gap:6px;
+  .hud {
+    display: flex;
+    justify-content: space-around;
+    background: var(--green-light);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    flex-wrap: wrap;
   }
+
   /* Minijuego 1 */
-  .bins{display:flex;justify-content:space-around;margin-top:1rem;flex-wrap:wrap;gap:0.5rem;}
-  .bin{flex:1;min-width:90px;padding:1rem;border:2px dashed var(--green);border-radius:8px;}
-  .item{display:inline-block;background:var(--blue);color:#fff;padding:0.6rem 1.1rem;border-radius:6px;margin:4px;cursor:grab;font-size:1.6rem;}
+  .bins {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .bin {
+    flex: 1;
+    min-width: 90px;
+    padding: 0.8rem;
+    border: 2px dashed var(--green);
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .item {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    margin: 4px;
+    cursor: grab;
+    font-size: 1.5rem;
+  }
+
   /* Minijuego 2 */
-  .tap-area{position:relative;height:40vh;max-height:320px;background:#e0f7fa;border-radius:10px;overflow:hidden;}
-  .faucet{position:absolute;width:60px;height:60px;background:var(--blue);border-radius:50%;display:flex;justify-content:center;align-items:center;color:#fff;font-size:1.8rem;cursor:pointer;user-select:none;}
-  .waste-bar{height:22px;background:#ccc;margin-top:10px;border-radius:10px;overflow:hidden;}
-  .waste-fill{height:100%;width:0;background:red;transition:width 0.1s;}
+  .tap-area {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: #e0f7fa;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .faucet {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .waste-bar {
+    height: 16px;
+    background: #ccc;
+    margin-top: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .waste-fill {
+    height: 100%;
+    width: 0;
+    background: red;
+    transition: width 0.1s;
+  }
+
   /* Minijuego 3 */
-  .grid{display:grid;grid-template-columns:repeat(5,1fr);grid-gap:6px;justify-content:center;}
-  .cell{width:100%;aspect-ratio:1;background:#c8e6c9;border-radius:6px;display:flex;justify-content:center;align-items:center;font-size:1.5rem;cursor:pointer;}
-  .bar{height:22px;background:#ccc;margin:10px;border-radius:10px;overflow:hidden;}
-  .fill{height:100%;width:50%;background:var(--blue);transition:width 0.3s;}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .cell {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #c8e6c9;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  .bar {
+    height: 16px;
+    background: #ccc;
+    margin: 10px 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .fill {
+    height: 100%;
+    width: 50%;
+    background: var(--blue);
+    transition: width 0.3s;
+  }
+
+  /* Responsive */
+  @media (max-width:480px){
+    header { font-size:1.1rem; padding:0.8rem; }
+    .container { padding:0.8rem; }
+    button { font-size:0.9rem; padding:0.6rem; }
+    .bin { font-size:0.8rem; padding:0.5rem; }
+    .item { font-size:1.2rem; }
+    .faucet { width:40px; height:40px; font-size:1.2rem; }
+  }
 </style>
 </head>
 <body>
@@ -105,18 +199,15 @@
 
 <script>
 "use strict";
-/* ==== Estado global ==== */
 const TARGET_SORT=10, TARGET_TAPS=15, TARGET_TREES=5;
 let gameState={nivel:1,puntos:0,objetivo:0,scene:null,timers:[],raf:null};
 
-/* ==== Utilidades ==== */
 const qs=s=>document.querySelector(s);
 const qsa=s=>Array.from(document.querySelectorAll(s));
 function clearTimers(){gameState.timers.forEach(clearInterval);gameState.timers=[];if(gameState.raf){cancelAnimationFrame(gameState.raf);gameState.raf=null;}}
 function goTo(scene){clearTimers();qs("#scene").innerHTML="";mountScene(scene);updateHud();}
 function updateHud(){qs("#hud").style.display=(gameState.scene==="inicio"||gameState.scene==="final")?"none":"flex";qs("#nivel").textContent=gameState.nivel;qs("#puntos").textContent=gameState.puntos;qs("#objetivo").textContent=gameState.objetivo+"/30";}
 
-/* ==== Escenas ==== */
 function mountScene(name){gameState.scene=name;
  if(name==="inicio"){
    qs("#scene").innerHTML=`<h2>Guardianes del Planeta</h2><p>Aprende a cuidar el medio ambiente jugando tres retos.</p><button id="play">Jugar</button>`;
@@ -131,57 +222,55 @@ function mountScene(name){gameState.scene=name;
  }
 }
 
-/* ==== Juego 1 ==== */
 function game1(){
  qs("#scene").innerHTML=`<h2>Minijuego 1 - Separar residuos</h2><p>Toca o arrastra los objetos al contenedor correcto.</p><div id="items"></div><div class="bins"><div class="bin" data-type="org">Orgánico</div><div class="bin" data-type="pla">Plástico</div><div class="bin" data-type="pap">Papel</div></div>`;
  const itemsEl=qs("#items");const types=["org","pla","pap"];let score=0;
  for(let i=0;i<TARGET_SORT;i++){let t=types[Math.floor(Math.random()*3)];let el=document.createElement("div");el.className="item";el.textContent=t==="org"?"🍎":t==="pla"?"🧴":"📄";el.draggable=true;el.dataset.type=t;itemsEl.appendChild(el);}
  qsa(".item").forEach(it=>{
    it.addEventListener("dragstart",e=>{e.dataTransfer.setData("type",it.dataset.type);});
-   it.addEventListener("click",()=>binDrop(it));
-   it.addEventListener("touchstart",()=>binDrop(it));
+   it.addEventListener("click",()=>{let bins=qsa(".bin");let target=bins.find(b=>b.dataset.type===it.dataset.type);if(target){it.remove();score++;if(score>=TARGET_SORT){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=2;goTo("juego2");}}});
  });
  qsa(".bin").forEach(bin=>{
    bin.addEventListener("dragover",e=>e.preventDefault());
-   bin.addEventListener("drop",e=>{
-     let type=e.dataTransfer.getData("type");let el=itemsEl.querySelector(`.item[data-type=${type}]`);
-     if(type===bin.dataset.type && el){el.remove();score++;if(score>=TARGET_SORT){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=2;goTo("juego2");}}
-   });
+   bin.addEventListener("drop",e=>{let type=e.dataTransfer.getData("type");let el=itemsEl.querySelector(`.item[data-type=${type}]`);if(type===bin.dataset.type && el){el.remove();score++;if(score>=TARGET_SORT){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=2;goTo("juego2");}}});
  });
- function binDrop(it){let target=qsa(".bin").find(b=>b.dataset.type===it.dataset.type);if(target){it.remove();score++;if(score>=TARGET_SORT){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=2;goTo("juego2");}}}
 }
 
-/* ==== Juego 2 ==== */
 function game2(){
  qs("#scene").innerHTML=`<h2>Minijuego 2 - Ahorra agua</h2><p>Toca los grifos antes que se llene la barra.</p><div class="tap-area" id="tapArea"></div><div class="waste-bar"><div class="waste-fill" id="wasteFill"></div></div>`;
- const tapArea=qs("#tapArea"), wasteFill=qs("#wasteFill");let taps=0, waste=0;
+ const tapArea=qs("#tapArea"), wasteFill=qs("#wasteFill");
+ let taps=0, waste=0;
  function spawn(){
    if(tapArea.children.length<3){
-     let f=document.createElement("div");f.className="faucet";f.textContent="🚰";
-     f.style.left=Math.random()*(tapArea.clientWidth-60)+"px";f.style.top=Math.random()*(tapArea.clientHeight-60)+"px";tapArea.appendChild(f);
-     const remove=()=>{taps++;f.remove();waste=Math.max(0,waste-0.1);if(taps>=TARGET_TAPS){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=3;goTo("juego3");}};
-     f.addEventListener("click",remove);f.addEventListener("touchstart",remove);
+     let f=document.createElement("div");
+     f.className="faucet";f.textContent="🚰";
+     f.style.left=Math.random()*(tapArea.clientWidth-50)+"px";
+     f.style.top=Math.random()*(tapArea.clientHeight-50)+"px";
+     tapArea.appendChild(f);
+     f.onclick=()=>{taps++;f.remove();waste=Math.max(0,waste-0.1);if(taps>=TARGET_TAPS){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=3;goTo("juego3");}};
    }
  }
  let spawnTimer=setInterval(spawn,1000);gameState.timers.push(spawnTimer);
- function animate(){waste+=0.002;if(waste>1)waste=1;wasteFill.style.width=(waste*100)+"%";if(waste>=1){taps=0;waste=0;tapArea.innerHTML="";}gameState.raf=requestAnimationFrame(animate);}animate();
+ function animate(){
+   waste+=0.002;if(waste>1) waste=1;
+   wasteFill.style.width=(waste*100)+"%";
+   if(waste>=1){taps=0;waste=0;tapArea.innerHTML="";}
+   gameState.raf=requestAnimationFrame(animate);
+ } animate();
 }
 
-/* ==== Juego 3 ==== */
 function game3(){
  qs("#scene").innerHTML=`<h2>Minijuego 3 - Plantar árboles</h2><p>Toca para plantar y cuida el agua.</p><div class="grid" id="grid"></div><div class="bar"><div class="fill" id="waterFill"></div></div>`;
  const grid=qs("#grid"), waterFill=qs("#waterFill");let water=0.5,adults=0;
- for(let i=0;i<25;i++){let c=document.createElement("div");c.className="cell";c.dataset.stage=0;
-   const plant=()=>{if(c.dataset.stage==0){c.dataset.stage=1;c.textContent="🌱";water=Math.min(1,water+0.2);}};
-   c.addEventListener("click",plant);c.addEventListener("touchstart",plant);grid.appendChild(c);}
+ for(let i=0;i<25;i++){let c=document.createElement("div");c.className="cell";c.dataset.stage=0;c.onclick=()=>{if(c.dataset.stage==0){c.dataset.stage=1;c.textContent="🌱";water=Math.min(1,water+0.2);}};grid.appendChild(c);}
  function tick(){water=Math.max(0,water-0.001);waterFill.style.width=(water*100)+"%";adults=0;
  qsa(".cell").forEach(c=>{let s=+c.dataset.stage;if(s>0&&Math.random()<0.01&&water>0.1){s++;c.dataset.stage=s;if(s==2)c.textContent="🌳";if(s>=3)c.textContent="🌲";}if(s>=3)adults++;});
  if(adults>=TARGET_TREES){gameState.puntos+=10;gameState.objetivo+=10;gameState.nivel=4;goTo("final");}
- gameState.raf=requestAnimationFrame(tick);}tick();
+ gameState.raf=requestAnimationFrame(tick);} tick();
 }
 
-/* ==== Inicio ==== */
 mountScene("inicio");
 </script>
 </body>
 </html>
+
